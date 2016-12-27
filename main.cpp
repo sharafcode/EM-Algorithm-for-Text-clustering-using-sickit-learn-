@@ -39,7 +39,8 @@ int fitness(string str){              //Calculate how many 'ones' in between zer
 
 //Mutation function
 string mutation(string gene){
-    int mut=rand()%6;
+    srand(time(NULL));
+    int mut=(rand()%gene.length());
     if(gene[mut]=='1')
         gene[mut]='0';
     else
@@ -192,6 +193,13 @@ int main()
                 max_gene=best;
             if(fitness(min_gene)>fitness(worst))
                 min_gene=worst;
+            char c;
+            cout<<"\n\t\t\t\t Do you want to continue next generation ('Y' for continue or 'N' for stop)\n";
+            cin>>c;
+            if(c=='y' || c=='Y' )
+                continue;
+            if (c=='N' || c=='n')
+                break;
     }
     //Print after all iterations the best and worst gene came out from all the generations.
     cout<<"\t\t The best gene through all generations is :   "<<max_gene<<"\t with fitness evaluation =  "<<fitness(max_gene)<<endl;
