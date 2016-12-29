@@ -2,7 +2,7 @@
 /// Name        : Genetic-algorithm.cpp
 /// Author      : Abd L-Rahman Sharaf
 /// Email       : abdlrahman.sharaf@gmail.com
-/// Copyright   : MIT copyrights
+/// Copyright   : MIT lisence
 /// Description : Hello World in C++, Ansi-style
 /// ============================================================================
 
@@ -28,7 +28,7 @@ typedef unsigned int ui;
 
 
 //Fitness function
-int fitness(string str){              //Calculate how many 'ones' in between zeros like "010".
+int fitness(string str){    //Calculate how many 'ones' in between zeros like "010".
     int ctr=0;
     for(ui j=0; j<str.length(); j++){
         if(str[j-1]=='0' && str[j+1]=='0' && str[j]=='1')
@@ -93,6 +93,16 @@ int main()
     for(int l=0; l<m; l++){
         cout<<"Enter the "<<l<<" gene: "<<endl;
         cin>>gen[0][l];
+        
+        if(gen[0][l].length()<10){  //Make all genes with the same length of 10 bit in binary representation.
+        string temp;
+        for(int i=gen[0][l].length();i<10;i++)
+        {
+            temp=temp+"0";
+        }
+        gen[0][l]=temp+gen[0][l];
+        }
+        
         fit_map[fitness(gen[0][l])]= gen[0][l];
     }
     string worst;
